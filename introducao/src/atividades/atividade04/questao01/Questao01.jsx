@@ -21,6 +21,8 @@ const minhaPromise = new Promise (
                     })
                 }
             }
+            ,
+            3000
         )
     }
 )
