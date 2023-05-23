@@ -21,6 +21,8 @@ const minhaPromise = new Promise (
                     })
                 }
             }
+            ,
+            3000
         )
     }
 )
@@ -28,21 +30,11 @@ const minhaPromise = new Promise (
 const Questao02 = () => {
     useEffect (
         () => {
-            getPromessaThen()
+            getPromessaAsync()
         }
         ,
         []
     )
-
-    function getPromessaThen() {
-        minhaPromise
-            .then(
-                (data) => { console.log(data.msg) }
-            )
-            .catch(
-                (data) => { console.log(data.msg) }
-            )
-    }
 
     async function getPromessaAsync() {
         try {
