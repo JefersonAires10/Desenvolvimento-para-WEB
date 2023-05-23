@@ -29,7 +29,7 @@
     )
 }*/
 
-//V30
+//V3
 
 const MyProps = ({nome,curso}) => {
     return (
