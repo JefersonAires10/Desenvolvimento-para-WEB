@@ -30,12 +30,14 @@ import './App.css';
 //import Questao02 from './atividades/atividade04/questao02/Questao02';
 //import TelaPrincipal from './atividades/atividade04/questao03/TelaPrincipal';
 //import Signin from './components/13MUI/01Signin/Signin';
-import MyMenu from './components/13MUI/02Crud/MyMenuV1';
+//import MyMenu from './components/13MUI/02Crud/MyMenuV1';
+import MainPage from './components/13MUI/02Crud/MainPage';
+
 
 function App() {
   return (
     <div className="App">
-      <MyMenu />
+      <MainPage />
     </div>
   );
 }
