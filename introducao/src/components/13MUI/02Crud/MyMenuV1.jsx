@@ -1,10 +1,13 @@
-import { AppBar, Button, Container, Toolbar, Typography, Box, Menu, MenuItem } from '@mui/material'
-import AdbIcon from '@mui/icons-material/Adb';
-import { useState } from 'react';
+import { AppBar, Box, Button, Container, Menu, MenuItem, Toolbar, Typography } from "@mui/material"
+import AdbIcon from "@mui/icons-material/Adb"
+import { Link } from "react-router-dom"
+import { useState } from "react"
+
 
 const MyMenu = () => {
 
     const [anchorElProfessor, setAnchorElProfessor] = useState(null);
+    const [anchorElAluno, setAnchorElAluno] = useState(null);
     
     const handleOpenAnchorElProfessor = (event) => {
         setAnchorElProfessor(event.currentTarget)
@@ -14,10 +17,20 @@ const MyMenu = () => {
         setAnchorElProfessor(null)
     }
 
+    const handleOpenAnchorElAluno = (event) => {
+        setAnchorElAluno(event.currentTarget)
+    }
+    const handleCloseAnchorElAluno = () => {
+        setAnchorElAluno(null)
+    }
+
     function dropProfMenu() {
         return (
             <Box>
-                <Button sx={{ color: "white", my: 2,}}>
+                <Button 
+                    sx={{ color: "white", my: 2}}
+                    onClick={ handleOpenAnchorElProfessor }
+                >
                     Professores
                 </Button>
                 <Menu
@@ -26,16 +39,50 @@ const MyMenu = () => {
                     onClose={ handleCloseAnchorElProfessor }
                 >
                     <MenuItem
-                        onClick = {
-                            () => {
-                                handleCloseAnchorElProfessor()
-                                alert("Indo para a página de cadastros")
-                            }
-                        }
+                        onClick = { handleCloseAnchorElProfessor }
+                        component = { Link }
+                        to = "cadastrarProfessor"
                     >
                         Cadastrar
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem
+                        onClick={ handleCloseAnchorElProfessor }
+                        component = { Link }
+                        to = "listarProfessor"
+                    >
+                        Listar
+                    </MenuItem>
+                </Menu>
+            </Box>
+        )
+    }
+
+    function dropAlunoMenu() {
+        return (
+            <Box>
+                <Button 
+                    sx={{ color: "white", my: 2}}
+                    onClick={ handleOpenAnchorElAluno }
+                >
+                    Alunos  
+                </Button>
+                <Menu
+                    anchorEl={ anchorElAluno }
+                    open={ Boolean(anchorElAluno) }
+                    onClose={ handleCloseAnchorElAluno }
+                >
+                    <MenuItem
+                        onClick = { handleCloseAnchorElAluno }
+                        component = { Link }
+                        to = "cadastrarAluno"
+                    >
+                        Cadastrar
+                    </MenuItem>
+                    <MenuItem
+                        onClick={ handleCloseAnchorElAluno }
+                        component = { Link }
+                        to = "listarAluno"
+                    >
                         Listar
                     </MenuItem>
                 </Menu>
@@ -46,46 +93,34 @@ const MyMenu = () => {
     return (
         <AppBar position="static">
             <Container>
-                <Toolbar
-                    sx={{
-                        display: {xs:"none", md:"flex", mr:1},
-                    }}
-                >
-                    <AdbIcon sx={{ display:"flex", mr:1 }} />
+                <Toolbar>
+                    <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
                     <Typography
-                        variant="h5"
+                        variant="h4"
                         component="a"
                         href="/"
                         sx={{
                             textDecoration: "none",
                             color: "white",
                             fontFamily: "monospace",
-                            letterSpacing: ".2rem",
-                            fontWeight: "bold",
-
+                            letterSpacing: ".3rem",
+                            fontWeight: 800
                         }}
                     >
-                        CRUD - MUI - V0
+                        CRUD_V1
                     </Typography>
-                    
-                    <Box
-                        sx={{
-                            display: "flex",
-                            marginLeft: "auto",
-                            justifyContent: "flex-end",
-                        }}
-                        onClick={ handleOpenAnchorElProfessor }
-                    >
-                        { dropProfMenu() }
-                        <Button sx={{ color: "white", my: 2,}}>
-                            Alunos
-                        </Button>
-                        <Button sx={{ color: "white", my: 2,}}>
+
+                    <Box sx={{ ml: 3, width: "100%", display: "flex", justifyContent: "flex-end" }}>
+                        {dropProfMenu()}
+            
+                        {dropAlunoMenu()}
+
+                        <Button
+                            sx={{ color: "white", my: 2 }}
+                        >
                             Sobre
                         </Button>
-                    
                     </Box>
-
                 </Toolbar>
             </Container>
         </AppBar>
