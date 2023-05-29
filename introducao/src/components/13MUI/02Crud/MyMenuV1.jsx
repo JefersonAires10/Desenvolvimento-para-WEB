@@ -107,7 +107,7 @@ const MyMenu = () => {
                             fontWeight: 800
                         }}
                     >
-                        CRUD_V1
+                        Sistema de Cadastros
                     </Typography>
 
                     <Box sx={{ ml: 3, width: "100%", display: "flex", justifyContent: "flex-end" }}>
