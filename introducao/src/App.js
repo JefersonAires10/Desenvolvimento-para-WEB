@@ -36,7 +36,7 @@ import MainPage from './components/13MUI/02Crud/MainPage';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <MainPage />
     </div>
   );
