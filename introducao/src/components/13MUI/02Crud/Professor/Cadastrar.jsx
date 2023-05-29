@@ -1,15 +1,31 @@
 import { Box, Button, TextField, Typography } from "@mui/material"
+import { FormControl, FormControlLabel, FormGroup, FormLabel } from "@mui/material"
+import { Checkbox, InputLabel, MenuItem, Select } from "@mui/material"
+
+
 import { useState } from "react"
 
 const Cadastrar = () => {
 
-    const [nome,setNome] = useState("")
-    const [curso,setCurso] = useState("")
-
+    const [nome,setNome] = useState("") // textfield
+    const [curso,setCurso] = useState("") // textfield
+    const [titulacao, setTitulacao] = useState("GRAD") // select
+    const [ai, setAi] = useState({cg:false, mc:false, al:false, es:false}) // checkbox
+    let { cg, mc, al, es } = ai
+    
     function handleSubmit(event) {
         event.preventDefault()
         console.log(nome)
         console.log(curso)
+        console.log(titulacao)
+        console.log(ai)
+
+    }
+
+    function handleCheckbox (event) {
+        setAi ({ 
+            ...ai, [event.target.name]: event.target.checked
+        })
     }
 
     return (
@@ -46,6 +62,32 @@ const Cadastrar = () => {
                     onChange={(event)=>setCurso(event.target.value)}
                     
                 />
+
+                <FormControl sx={{marginTop: 2, width:"100%"}}>
+                    <InputLabel id="select-tit-label">Titulação</InputLabel>
+                    <Select
+                        labelId="select-tit-label"
+                        label="Titulação"
+                        value={titulacao}
+                        onChange={(event) => setTitulacao(event.target.value)}
+                    >
+                        <MenuItem value="GRAD"> Graduação</MenuItem>
+                        <MenuItem value="MEST"> Mestrado</MenuItem>
+                        <MenuItem value="DOUT"> Doutorado</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl sx={{mt: 2, ml: 2}} component="fieldset" variant="standard">
+                    <FormLabel component="legend" sx={{fontSize: 12, mb:2}}>Áreas de Interesse</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel control={<Checkbox checked={cg} name="cg" onChange={handleCheckbox} />} label="Computação Gráfica" />
+                        <FormControlLabel control={<Checkbox checked={mc} name="mc" onChange={handleCheckbox} />} label="Matemática Computacional" />
+                        <FormControlLabel control={<Checkbox checked={al} name="al" onChange={handleCheckbox} />} label="Algoritmos" />
+                        <FormControlLabel control={<Checkbox checked={es} name="es" onChange={handleCheckbox} />} label="Engenharia de Sofware" />
+                    </FormGroup>
+                </FormControl>
+
+
                 <Box sx={{display:"flex",justifyContent:"center",mt:2}}>
                     <Button
                         variant="contained"
