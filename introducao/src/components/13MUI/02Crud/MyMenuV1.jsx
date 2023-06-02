@@ -104,13 +104,14 @@ const MyMenu = () => {
                             color: "white",
                             fontFamily: "monospace",
                             letterSpacing: ".3rem",
-                            fontWeight: 800
+                            fontWeight: 100
                         }}
                     >
-                        Sistema de Cadastros
+                        CRUD
                     </Typography>
 
                     <Box sx={{ ml: 3, width: "100%", display: "flex", justifyContent: "flex-end" }}>
+                        
                         {dropProfMenu()}
             
                         {dropAlunoMenu()}

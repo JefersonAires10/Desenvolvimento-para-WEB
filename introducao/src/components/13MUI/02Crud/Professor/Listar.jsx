@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import { styled } from "@mui/material/styles"
+import { Link } from "react-router-dom"
 
 
 const Listar = () => {
@@ -37,6 +38,13 @@ const Listar = () => {
         { id: 4, nome:"Viviane Menezes", curso:"CC", titulacao: "DOUT" }
     ]
 
+    
+    function deleteProfessorById(id) {
+        if (window.confirm("Deseja excluir o professor?")) {
+            alert(`Professor ${id} excluído com sucesso!`)
+        }
+    }
+
     return (
         <>
             <Typography variant="h5" fontWeight="bold" >
@@ -67,10 +75,10 @@ const Listar = () => {
                                             <StyledTableCell>{professor.titulacao}</StyledTableCell>
                                             <StyledTableCell>
                                                 <Box>
-                                                    <IconButton arial-label="edit" color="primary">
+                                                    <IconButton arial-label="edit" color="primary" component={Link} to={`/editarProfessor/${professor.id}`}>
                                                         <EditIcon />
                                                     </IconButton>
-                                                    <IconButton arial-label="delete" color="error">
+                                                    <IconButton arial-label="delete" color="error" onClick={ () => deleteProfessorById(professor.id) } >
                                                         <DeleteIcon />
                                                     </IconButton>
                                                 </Box>
@@ -83,7 +91,6 @@ const Listar = () => {
             
                         }
                     </TableBody>
-
                 </Table>
             </TableContainer>
         </>   
