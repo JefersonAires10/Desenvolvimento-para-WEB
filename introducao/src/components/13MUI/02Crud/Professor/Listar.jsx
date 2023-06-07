@@ -6,7 +6,8 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import { styled } from "@mui/material/styles"
 import { Link } from "react-router-dom"
-
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const Listar = () => {
 
@@ -30,13 +31,25 @@ const Listar = () => {
         },
       }));
     
-    const professores = [
-        { id: 0, nome:"Jefferson Carvalho", curso:"SI", titulacao:"MEST" }, 
-        { id: 1, nome:"Atilio Luiz", curso:"CC", titulacao: "DOUT" }, 
-        { id: 2, nome:"Ricardo Reis", curso:"CC", titulacao: "DOUT" },
-        { id: 3, nome:"Wladimir Tavares", curso:"SI", titulacao: "GRAD" },
-        { id: 4, nome:"Viviane Menezes", curso:"CC", titulacao: "DOUT" }
-    ]
+    const [professores, setProfessores] = useState([])
+
+    useEffect (
+        () => {
+            axios.get("http://localhost:3001/professor/listar")
+            .then (
+                (response) => {
+                    setProfessores(response.data)
+                }
+            ) 
+            .catch (
+                (error) => {
+
+                }
+            )
+        }
+        ,
+        []
+    ) 
 
     
     function deleteProfessorById(id) {
